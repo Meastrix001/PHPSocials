@@ -1,0 +1,108 @@
+span, label, legend, h1{
+  color: white;
+}
+a,p{
+  text-decoration: none;
+  font-size: 1rem;
+}
+a:hover{
+  text-decoration: underline solid white;
+}
+h2{
+  color: white;
+  font-size: 1.6rem;
+}
+.account--details{
+width: 100%;
+}
+.account--details img{
+max-width: 100%;
+height: auto;
+} 
+.account--details figure{
+  margin: auto;
+  width: fit-content;
+  max-width: 100%;
+  } 
+.account--details div{
+margin: auto;
+text-align: left;
+width: fit-content;
+margin: 1rem auto;
+background-color: #242526;
+border-radius: 15px;
+padding: 1rem;
+}
+
+
+  .account--details .account--details-warned a:hover{
+    text-decoration: underline solid red;
+
+  }
+
+  .account--details form{
+    width: 100%;
+    margin: 3rem auto;
+  }
+
+  .account--details form span{
+  }
+
+  .account--details form input{
+    padding: 0.25rem;
+  }
+
+  .account--details--form{
+display: flex;
+flex-direction: column;
+}
+
+.account--details--form input{
+    width: fit-content;
+    color: blue;
+    font-size: 1rem;
+
+  }
+.account--details--form--container{
+  display: flex;
+}
+.account--details--form--container form{
+  margin-right: 1rem;
+}
+
+@media (min-width:750px) {
+  a,p{
+    font-size: 1.2rem;
+  } 
+  h2{
+    font-size: 2rem;
+  }
+  .account--details div{
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+    max-width: 100%;
+  }
+  .account--details--form{
+    flex-direction: row;
+    }
+    
+}
+@media (min-width:1200px) {
+  .account--details div{
+    display: flex;
+    justify-content: space-evenly;
+    width: auto;
+    max-width: 1200px;
+  }
+  .account--details section{
+max-width: 50%;
+width: fit-content;
+  }
+  a,p{
+    font-size: 1.5rem;
+  }
+  h2{
+    font-size: 2.2rem;
+  }
+}

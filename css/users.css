@@ -1,0 +1,29 @@
+.users{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+}
+.users-search{
+  width: fit-content;
+  margin: 2rem auto;
+}
+.users-search input{
+  padding: 0.50rem;
+}
+.users--content{
+max-width: 20%;
+}
+.users--content a img{
+  height: 100%;
+  width: 100%;
+  max-width: 10rem;
+  max-height: 10rem;
+}
+.users--content a h4{
+  max-width: 100%;
+}
+
+

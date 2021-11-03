@@ -1,0 +1,66 @@
+body{
+  background-color: #1c1e21
+}
+.message--hidden{
+  display: none;
+}
+.warned,
+.warned a{
+  color: rgb(138, 4, 4);
+}
+.text_white{
+  color: white;
+}
+b{
+  color: white;
+}
+main{
+  max-width: 1200px;
+  margin: auto;
+}
+.user--image{
+display: flex;
+align-items: center;
+}
+.user--image img{
+  width: 2rem;
+  height: 2rem;
+  border-radius: 20px;
+  margin-left: 1rem;
+}
+nav{
+  width: fit-content;
+  margin: auto;
+}
+nav ul{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding-inline-start: 0;
+}
+nav ul li{
+margin: 0.5rem;
+list-style: none;
+display: flex;
+align-items: center;
+}
+nav ul li a{
+  text-decoration: none;
+  color: white;
+  transition: 0.125s ease
+}
+nav ul li a:hover{
+  text-decoration: underline white;
+  transition: 0.125s ease; 
+}
+
+@media (min-width:750px) {
+ nav ul li a{
+   font-size: 1.3rem;
+ }
+}
+@media (min-width:1200px) {
+  nav ul li a{
+    font-size: 1.4rem;
+  }
+}

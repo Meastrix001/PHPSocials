@@ -1,0 +1,48 @@
+.home--posts {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto
+}
+
+.posts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.posts--content{
+  margin: 2rem 0;
+  background-color: #242526;
+  border-radius: 20px;
+}
+.posts--content div{
+  padding: 0.5rem;
+}
+
+.posts--content h4 {
+  margin-top: 0;
+  padding: 0.5rem;
+}
+
+.posts--content h4,
+.posts--content p,
+.posts--content a {
+  color: white;
+  text-decoration: none;
+}
+.posts--content p{
+  margin: 0;
+  margin-top: 1rem;
+}
+.posts--content img {
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  max-height: 35rem;
+
+
+}
+
+.posts--content a h4 {
+  max-width: 100%;
+  margin: 0.5rem;
+}
