@@ -4,3 +4,5 @@ it wil inlude User managment, CRUD
 posts, likes, comments, followers comments on comments.
 
 use of controllers and views for loading data from a database
+experimenting with different ways to do ForEach's, if statements, reuseablity, updating a database quickly with use of forms and refresh methods,
+
