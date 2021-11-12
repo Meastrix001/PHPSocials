@@ -29,25 +29,31 @@ include_once BASE_DIR . '/views/_templates/_partials/header.php';
 
       </section>
       <?php if ($loggedIn_user) : "";?>
+      <?php if ($loggedIn_user->email === $user->email) : ?>
+        
+        <?php endif?>
 
+        <section>
+          <?php if ($loggedIn_user->email !== $user->email) : ?>
+          <?php if (empty($isFriend)) : "";?>
+            <form class="account--details--form" method="post" >
+              <input class="message--hidden" name="user_id" value="<?=$user->id?>">
+              <input type="submit" value="Follow" class="text_blue unliked " name="follow_user">
+            </form>
+
+          <?php else : ""?>
+            <form class="account--details--form" method="post" >
+              <input class="message--hidden" name="user_id" value="<?=$user->id?>">
+              <input type="submit" value="Unfollow" class="text_blue liked" name="unFollow_user">
+            </form>
+        </section>
+        <?php endif?>
+
+
+        <?php endif?>
         <?php if ($loggedIn_user->email === $user->email) : ?>
           <section>
-        
-            <?php if ( $loggedIn_user->username === $user->username )?>
 
-              <?php if (empty($isFriend)) : "";?>
-                <form class="account--details--form" method="post" >
-                  <input class="message--hidden" name="user_id" value="<?=$user->id?>">
-                  <input type="submit" value="Follow" class="text_blue unliked " name="follow_user">
-                </form>
-
-              <?php else : ""?>
-                <form class="account--details--form" method="post" >
-                  <input class="message--hidden" name="user_id" value="<?=$user->id?>">
-                  <input type="submit" value="Unfollow" class="text_blue liked" name="unFollow_user">
-                </form>
-
-              <?php endif?>
 
 
             <form class="account--details--form text_white " method="post" >
