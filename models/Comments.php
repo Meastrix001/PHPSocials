@@ -39,7 +39,7 @@ class Comments extends BaseModel {
                 ':created_on' => $comment->created_on,
                 ':posts_id' => $comment->posts_id
             ]
-         );
+        );
     
         return $db->lastInsertId();
     }

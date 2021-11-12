@@ -18,22 +18,31 @@ width: 100%;
 .account--details img{
 max-width: 100%;
 height: auto;
+max-height: inherit;
+border-radius: 25px;
 } 
 .account--details figure{
   margin: auto;
   width: fit-content;
   max-width: 100%;
+  border-radius: 25px;
+  max-width: 25rem;
+  max-height: 25rem;
   } 
+
 .account--details div{
 margin: auto;
 text-align: left;
 width: fit-content;
 margin: 1rem auto;
-background-color: #242526;
+background-color: var(--background--secondary);
 border-radius: 15px;
 padding: 1rem;
 }
-
+.account--details--followers span{
+font-size: 2rem;
+color: var(--blue);
+}
 
   .account--details .account--details-warned a:hover{
     text-decoration: underline solid red;
@@ -42,7 +51,6 @@ padding: 1rem;
 
   .account--details form{
     width: 100%;
-    margin: 3rem auto;
   }
 
   .account--details form span{
@@ -50,24 +58,34 @@ padding: 1rem;
 
   .account--details form input{
     padding: 0.25rem;
-  }
+    background: none;
+    padding: 0.25rem;
+    font-size: 1.5rem;
+    border: none;
+    color: var(--blue);
+}
+.account--details form input:hover{
+  cursor: pointer;
+  color: var(--background--hover);
+}
 
   .account--details--form{
 display: flex;
 flex-direction: column;
 }
 
-.account--details--form input{
-    width: fit-content;
-    color: blue;
-    font-size: 1rem;
+.comment--add{
+padding: 0.5rem;
+width: 40%;
+font-size: 1.2rem;
+}
 
-  }
 .account--details--form--container{
-  display: flex;
+
 }
 .account--details--form--container form{
   margin-right: 1rem;
+  margin-bottom: 0;
 }
 
 @media (min-width:750px) {
@@ -94,10 +112,18 @@ flex-direction: column;
     justify-content: space-evenly;
     width: auto;
     max-width: 1200px;
+    min-height: 12rem;
+  }
+  .account--details section p{
+    margin: 0;
   }
   .account--details section{
-max-width: 50%;
-width: fit-content;
+    max-width: 50%;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
   }
   a,p{
     font-size: 1.5rem;
@@ -105,4 +131,43 @@ width: fit-content;
   h2{
     font-size: 2.2rem;
   }
+}
+
+.signUp_form{
+  width: fit-content;
+  margin: auto;
+  background-color: var(--background--secondary);
+  border-radius: 25px;
+}
+.signUp_form button{
+  background-color:var(--blue);
+  color: white;
+  transition: 0.125s ease all;
+  border: none;
+  padding: 1rem 1.50rem;
+  margin-top: 2rem;
+}
+.signUp_form button:hover{
+  background-color:var(--background--hover);
+  cursor: pointer;
+  transition: 0.125s ease all;
+  
+}
+.signUp_form fieldset {
+  min-width: 20rem;
+  height: fit-content;
+  border: none;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+}
+.signUp_form fieldset span{
+color: black;
+width: 10rem;
+}
+.signUp_form fieldset input{
+  padding: 0.5rem;
+
 }

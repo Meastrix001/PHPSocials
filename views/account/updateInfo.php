@@ -9,15 +9,15 @@
             <legend>Profile</legend>
             <label>
                 <span>Username</span>
-                <input type="text" name="username" maxlenght="128" value="<?php echo $loggedIn_user->username ?? ''?>" required>
+                <input type="text" name="username" maxlenght="128" value="<?php echo $loggedIn_user->username ?? 'Username'?>" required>
             </label><br/>
             <label>
                 <span>Firstname</span>
-                <input type="text" name="firstname" maxlenght="128" value="<?php echo $loggedIn_user->firstname ?? ''; ?>" required>
+                <input type="text" name="firstname" maxlenght="128" value="<?php echo $loggedIn_user->firstname ?? 'Firstname'; ?>" required>
             </label><br/>
             <label>
                 <span>Lastname</span>
-                <input type="text" name="lastname" maxlenght="128" value="<?php echo $loggedIn_user->lastname ?? ''; ?>" required>
+                <input type="text" name="lastname" maxlenght="128" value="<?php echo $loggedIn_user->lastname ?? 'Lastname'; ?>" required>
             </label><br/>
             <label>
                 <span>E-mail</span>

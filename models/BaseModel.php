@@ -17,7 +17,6 @@ class BaseModel {
         $sql = "SELECT * 
         FROM `comment` 
         WHERE `posts_id` = $param";
-        print_r($sql);
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->execute( [ ':posts_id' => $param ] );
 
@@ -43,6 +42,32 @@ class BaseModel {
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->execute( [ ':users_id' => $param ] );
 
+        return $pdo_statement->fetchAll();
+    }
+     //people i am following
+    private function getAllfollowing(int $id) {
+        global $db;
+        global $loggedIn_user;
+        $sql = "SELECT * 
+        from followers 
+        where `users_id` = $id";
+    
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute( [ ':users_id' => $id] );
+    
+        return $pdo_statement->fetchAll();
+    }
+    //people following me
+    private function getAllFollowers(int $id) {
+        global $db;
+        global $loggedIn_user;
+        $sql = "SELECT * 
+        FROM `followers` 
+        WHERE `follower_id` = $id";
+    
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute( [ ':follower_id' => $id] );
+    
         return $pdo_statement->fetchAll();
     }
 

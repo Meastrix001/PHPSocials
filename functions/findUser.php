@@ -54,7 +54,6 @@ function getUserByCred($email, $password) {
     $stmnt->execute([ $email ]);
     $data = $stmnt->fetchObject();
         if(password_verify($password, $data->password)){
-        echo "Password verified";
         return $data;
         }
         else{
@@ -73,5 +72,19 @@ function getUserByEmail($email) {
     $stmnt = $db->prepare($sql);
     $stmnt->execute([ $email ]);
     $data = $stmnt->fetchObject();
+    return $data;
+}
+function checkIfFriends(int $id) {
+    
+    global $db;
+    
+        $sql = "SELECT * 
+        FROM `followers` 
+        WHERE `follower_id` LIKE ?";
+
+    $stmnt = $db->prepare($sql);
+    $stmnt->execute( [ $id ] );
+    $data = $stmnt->fetchAll();
+
     return $data;
 }

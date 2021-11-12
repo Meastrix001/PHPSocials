@@ -2,14 +2,16 @@
 
 class AccountController extends BaseController {
     
-    protected function index ($params) {
+    protected function index () {
         $this->viewParams['users'] = Users::getAll();
         $this->loadView();
     }
+
     protected function deleteUser ($params) {
         $this->viewParams['users'] = Users::deleteById($params[0]);
         $this->loadView();
     } 
+
     protected function updateInfo ($params) {
         $user_id = $params[0];
         global $loggedIn_user;
@@ -26,7 +28,6 @@ class AccountController extends BaseController {
         if ($_POST['lastname'] !== null) { $user->lastname = trim( $_POST['lastname'] );};
         if ($_POST['email'] !== null) { $user->email = trim( $_POST['email'] );};
         $user->id = $loggedIn_user->id;
-        echo "ID NUMBER" . $loggedIn_user->id;
         if( empty($user->firstname) || empty($user->lastname) || empty($user->email)) {
             $valid = false;
         }
@@ -39,7 +40,6 @@ class AccountController extends BaseController {
         if($valid) {
             if($user_id) {
                 $user->updateUser($user);
-                echo "Succesvol $user_id geupdated";
                 header("Location: /account/detail/$user->id");
             }
         }
@@ -47,9 +47,11 @@ class AccountController extends BaseController {
             //give feedback
             echo 'updating failed';
         }
+        }
+
+        $this->loadView();
     }
-    $this->loadView();
-    }
+
     protected function logout () {
         if (isset($_COOKIE['email'])) {
             $this->loadView();
@@ -63,10 +65,105 @@ class AccountController extends BaseController {
         $this->viewParams['user'] = Users::getById($params[0]);
         $this->viewParams['posts'] = Posts::getAllFilteredPosts($params[0]);
         $this->viewParams['comments'] = Comments::getAllById($params[0]);
+        $this->viewParams['followers'] = Friends::getAllFollowers($params[0]); //people following me
+        $this->viewParams['following'] = Friends::getAllFollowing($params[0]); //people i am following
+        $this->viewParams['comments'] = Comments::getAllById($params[0]);
 
-        echo "detail";
+        if(isset($_POST['log_out'])){
+            global $loggedIn_user;
+            session_destroy();
+            deleteUserCookie();
+            header("Location: /account/signIn");
+        }
+
+        if(isset($_POST['follow_user'])){
+            global $loggedIn_user;
+            $valid = true;
+            $Follow = new Follower();
+            if ($_POST['user_id'] !== null) { $Follow->follower_id  = $_POST['user_id'];};
+            $Follow->users_id = $loggedIn_user->id;
+            $Follow->date_following = date("Y/m/d");
+
+            
+            if( empty($Follow->users_id)){
+                $valid = false;
+                echo("fail");
+            }
+
+            if($valid) {
+                    $likeId = $Follow->createFollows($Follow);
+                    header("Refresh:0");
+            }
+            else {
+                echo("fail");
+            }
+            
+        }
+
+        if(isset($_POST['unFollow_user'])){
+            global $loggedIn_user;
+            $valid = true;
+            $Follow = new Follower();
+            if ($_POST['user_id'] !== null) { $Follow->follower_id  = $_POST['user_id'];};
+
+            if(empty($Follow)){
+                $valid = false;
+                echo("fail");
+            }
+
+            if($valid) {
+                $FollowId = $Follow->deleteById($Follow->follower_id);
+                header("Refresh:0");
+            }
+            else {
+                echo("fail");
+            }
+        }
+
+        if(isset($_POST['Liked_message'])){
+            global $loggedIn_user;
+            $valid = true;
+            $like = new Likes();
+            if ($loggedIn_user !== null) {$like->users_id = $loggedIn_user->id;};
+            if ($_POST['post_id'] !== null) { $like->posts_id  = $_POST['post_id'];};
+            $like->created_on = date("Y/m/d");
+
+            
+            if( empty($like->users_id) ?? empty($like->posts_id)){
+                $valid = false;
+            }
+
+            if($valid) {
+                    $likeId = $like->createLike($like);
+                    header("Refresh:0");
+            }
+            else {
+                echo("fail");
+            }
+            
+        }
+
+        if(isset($_POST['unlike_message'])){
+            global $loggedIn_user;
+            $valid = true;
+            $like = new Likes();
+            if ($_POST['post_id'] !== null) { $postId  = $_POST['post_id'];};
+
+            if(empty($postId)){
+                $valid = false;
+            }
+
+            if($valid) {
+                $likeId = $like->deleteById($postId);
+                header("Refresh:0");
+            }
+            else {
+                echo("fail");
+            }
+        }
+
+
         $this->loadView();
-
     }
 
     protected function signUp () {
@@ -108,12 +205,8 @@ class AccountController extends BaseController {
             if($valid) {
                 if($user) {
                     $user->createUser($user);
-                    print_r($user);
-                    echo "Account created";
                     setUserCookie($user->email);
                     header("Location: /home");
-
-
                 }
             }
             else {

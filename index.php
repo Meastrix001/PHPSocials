@@ -15,13 +15,15 @@ if(isset($route[0]) && $route[0] != '') {
     if(isset($route[0])) {
         $method = array_shift($route);  
     }
-
     $params = $route;
 } 
+else{
+    header("Location: /home/index");
+}
 
 $controller_path =  BASE_DIR . '/controllers/' . $controller . '.php';
 if(!file_exists($controller_path)) {
-    echo 'TODO: 404 inladen';
+    header("Location: /home/index");
     exit;
 } 
 

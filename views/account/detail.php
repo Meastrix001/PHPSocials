@@ -1,47 +1,73 @@
 <?php 
+global $loggedIn_user;
 $title = 'Users';
 $css = 'account';
 $css2 = 'posts';
-global $loggedIn_user;
+$isFriend = null;
+$isFriend = checkIfFriends($user->id);
 include_once BASE_DIR . '/views/_templates/_partials/header.php';
-$_F
 ?>
 <div class="account--details">
   <figure>
     <img src="<?="/images/users/" . $user->image?>" height="512px">
   </figure>
-  <div>
-    <section>
-      <p class="text_white">email: <?= $user->email; ?></p>
-      <p class="text_white">username: <?= $user->username; ?></p>
-    </section>
-    <section>
-      <p class="text_white">firstname: <?=$user->firstname; ?></p>
-      <p class="text_white">lastname: <?= $user->lastname; ?></p>
-    </section>
-  <?php if ($loggedIn_user->email === $user->email) : ?>
-    <section>
-      <p><a class="text_white" href="/account/logout">Log out</a></p>
-      <p ><a href="/account/updateInfo/<?=$user->id;?>" class="text_white">Update info</a></p>
-      <p class="warned"><a class="warned"href="/account/deleteUser/<?=$user->id;?>">Delete account</a></p>
-    </section>
-    <?php endif; ?>
+    <div>
+      <section class="account--details--followers">
+        <p class="text_white">email: <?= $user->email; ?></p>
+        <p class="text_white">username: <?= $user->username; ?></p>
+        <p class="text_white"><span><?=count($following)?></span> following <span><?=count($followers)?></span> followers</p>
+      </section>
+      <section>
+        <p class="text_white">firstname: <?=$user->firstname; ?></p>
+        <p class="text_white">lastname: <?= $user->lastname; ?></p>
+
+        <?php if ($loggedIn_user) : "";?>
+            
+          <p><a href="/account/updateInfo/<?=$user->id;?>" class="text_white">Update info</a></p>
+
+        <?php endif?>
+
+      </section>
+      <?php if ($loggedIn_user) : "";?>
+
+        <?php if ($loggedIn_user->email === $user->email) : ?>
+          <section>
+        
+            <?php if ( $loggedIn_user->username === $user->username )?>
+
+              <?php if (empty($isFriend)) : "";?>
+                <form class="account--details--form" method="post" >
+                  <input class="message--hidden" name="user_id" value="<?=$user->id?>">
+                  <input type="submit" value="Follow" class="text_blue unliked " name="follow_user">
+                </form>
+
+              <?php else : ""?>
+                <form class="account--details--form" method="post" >
+                  <input class="message--hidden" name="user_id" value="<?=$user->id?>">
+                  <input type="submit" value="Unfollow" class="text_blue liked" name="unFollow_user">
+                </form>
+
+              <?php endif?>
+
+
+            <form class="account--details--form text_white " method="post" >
+              <input type="submit" value="Log out" class="text_white" name="log_out">
+            </form>
+            
+            <form class="account--details--form" method="post" >
+              <input class="message--hidden" name="user_id" value=<?=$user->id?>>
+              <input type="submit" value="Delete account" class="warned deleteButton" name="delete_account">
+            </form>
+        
+          </section>
+        <?php endif; ?>
+      <?php endif; ?>
   </div>
-  <?php if ($loggedIn_user->email === $user->email) : ?>
-
-    <form class="account--details--form" method="post" enctype="multipart/form-data">
-      <input type="text" name="description" maxlenght="128" value='<?php echo $post->description ?? ''; ?>' required>
-      <input type="file" name="file" id="file"><br><br>
-      <input type="submit" value="Post it!" name="create_post">
-    </form>
-
-<?php endif; ?>
 </div>
 </div>
 <div class="posts--posts">
 
 <?php if(count($posts) < 0) {
-  echo "you have no posts";
   } else {
     foreach($posts as $post => $postKey) {
       require BASE_DIR . '/views/_templates/_partials/postsPage.php';

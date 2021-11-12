@@ -6,7 +6,6 @@ class Users extends BaseModel {
     protected $pk = 'id';
 
     function emailExists($email) {
-        echo "running email";
         global $db;
         $sql = "SELECT COUNT(email) FROM users WHERE email = ?";
         $stmnt = $db->prepare($sql);

@@ -3,15 +3,17 @@ global $loggedIn_user;
 $css = "posts";
 $title = "posts";
 include_once BASE_DIR . '/views/_templates/_partials/header.php';
-shuffle($posts)
+shuffle($posts);
+
 ?>
 <section class="posts--posts">
 <?php if(count($posts) < 0) {
 echo "no posts found";
 } else {
   foreach($posts as $post => $postKey) {
+    $isLiked = null;
     $comments = getAllComments($postKey['id']);
-    require BASE_DIR . '/views/_templates/_partials/postsPage.php';
+    include BASE_DIR . '/views/_templates/_partials/postsPage.php';
   }
 }
 ?>

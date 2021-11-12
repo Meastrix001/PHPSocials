@@ -1,15 +1,109 @@
-body{
-  background-color: #1c1e21
+:root{
+  --blue: #1723dd;
+  --red: rgb(138, 4, 4);
+  --background: #1b70ac;
+  --background--secondary: #239cc1;
+  --background--hover: #0b15b3;
+  --text--black: black;
 }
+.small_font{
+  font-size: 1rem;
+}
+body{
+  background-color: var(--background);
+  margin-top: 0;
+}
+.loginSignUp_center{
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+}
+.loginSignUp_center div{
+  margin: auto;
+}
+.title{
+  width: fit-content;
+  margin: auto;
+  font-size: 6rem;
+      transition: 0.125s ease all;
+      color: var(--blue);
+}
+.title span{
+color: var(--background--secondary);
+}
+
+@media (min-width:500px) {
+  .title{
+      transition: 0.125s ease all;
+      font-size: 10rem;
+  }
+ }
+ 
+@media (min-width:750px) {
+  .title{
+      transition: 0.125s ease all;
+      font-size: 12rem;
+  }
+ }
+ @media (min-width:1200px) {
+    .title{
+      font-size:16rem;
+      transition: 0.125s ease all;
+    }
+ }
 .message--hidden{
   display: none;
 }
+.comment--submit-button{
+  background-color: var(--background--secondary);
+  margin-left: 2px;
+  border: none;
+}
+.likeButton{
+  background-color: unset;
+  border: none;
+  font-size: 2rem;
+  margin-left: auto;
+    width: fit-content;
+}
+.likeButton:hover{
+  cursor: pointer;
+}
+.account--details--form--like{
+  margin-left: auto;
+  width: fit-content;
+}
 .warned,
 .warned a{
-  color: rgb(138, 4, 4);
+  color: var(--red) !important; 
+}
+.comment--box{
+  display: block;
+}
+@media (min-width: 1000px) {
+  .comment--box{
+    display: flex;
+  }
+  .comment--box p {
+    min-width: 30rem;
+  }
+}
+.deleteButton{
+  border: none;
+  background-color: unset;
+  border: none;
+  color: var(--red);
+  font-size: 1.5rem;
+}
+.deleteButton:hover{
+  cursor: pointer;
+  color: var(--red);
 }
 .text_white{
-  color: white;
+  color: black;
+}
+.text_blue{
+  color: var(--blue);
 }
 b{
   color: white;
@@ -26,7 +120,7 @@ align-items: center;
   width: 2rem;
   height: 2rem;
   border-radius: 20px;
-  margin-left: 1rem;
+  margin: 0 1rem;
 }
 nav{
   width: fit-content;
@@ -35,8 +129,13 @@ nav{
 nav ul{
   display: flex;
   flex-wrap: wrap;
+  margin: 0;
+  margin-bottom: 5rem;
+  padding: 1rem 2rem;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
   justify-content: space-evenly;
-  padding-inline-start: 0;
+  background-color: var(--background--secondary);
 }
 nav ul li{
 margin: 0.5rem;
@@ -46,11 +145,12 @@ align-items: center;
 }
 nav ul li a{
   text-decoration: none;
-  color: white;
-  transition: 0.125s ease
+  color: var(--text--black);
+  transition: 0.125s ease;
+  text-decoration: underline var(var(--background--secondary));
 }
 nav ul li a:hover{
-  text-decoration: underline white;
+  text-decoration: underline var(--background);
   transition: 0.125s ease; 
 }
 

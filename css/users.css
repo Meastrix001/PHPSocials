@@ -1,9 +1,11 @@
 .users{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
   width: 100%;
+  align-items: center;
+  justify-content: center;
   max-width: 1000px;
+  transition: 0.125s ease all;
   margin: auto;
 }
 .users-search{
@@ -14,9 +16,19 @@
   padding: 0.50rem;
 }
 .users--content{
-max-width: 20%;
+  min-width: 12rem;
+  transition: 0.125s ease all;
+  max-width: 19%;
+  padding: 1rem;
+  width: 100%;
+  margin: 1rem;
+  border-radius: 25px;
+  box-sizing: border-box;
+  background-color: var(--background--secondary);
 }
 .users--content a img{
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
   height: 100%;
   width: 100%;
   max-width: 10rem;
