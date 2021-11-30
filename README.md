@@ -26,3 +26,6 @@ experimenting with different ways to do ForEach's, if statements, reuseablity, u
 - delete comment, 
 - update comment
 
+## likes
+
+## follows
